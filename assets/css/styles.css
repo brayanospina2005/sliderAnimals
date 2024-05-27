@@ -469,6 +469,10 @@ button {
         display: none;
     }
 
+    #cursor {
+        display: none;
+    }
+
     .carousel .list .item .buttons {
         grid-template-columns: repeat(1, 100px);
     }
