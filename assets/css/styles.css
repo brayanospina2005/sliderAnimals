@@ -5,6 +5,7 @@ body{
     color: #eee;
     font-family: Poppins;
     font-size: 12px;
+    cursor: none;
 }
 a{
     text-decoration: none;
@@ -43,6 +44,60 @@ header a:hover::before {
     width: 100%;
     left: 0;
     visibility: visible;
+}
+
+#menu-button {
+    display: none;
+    background: transparent;
+    color: #fff;
+    border: none;
+    position: fixed;
+    right: 0;
+    z-index: 999;
+    font-size: 2em;
+}
+
+@media (max-width: 768px) {
+    #menu-button {
+        display: block;
+    }
+
+    #menu-container {
+        display: none;
+        flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        transition: transform 0.3s ease;
+    transform: translateY(-100%);
+    }
+
+    #menu-container a {
+        font-size: 2em;
+        margin: 20px;
+        /* el resto de tus estilos */
+    }
+    
+    #close-button {
+        display: none;
+        position: absolute;
+        right: 0;
+        /* el resto de tus estilos */
+    }
+    
+    #menu-container.open #close-button {
+        display: block;
+    }
+    #menu-container.open {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateY(0);
+    }
 }
 /* carousel */
 .carousel{
@@ -316,6 +371,11 @@ header a:hover::before {
 .carousel.next .arrows button,
 .carousel.prev .arrows button{
     pointer-events: none;
+    cursor: none;
+}
+button {
+    cursor: none;
+    /* el resto de tus estilos */
 }
 .carousel.prev .list .item:nth-child(2) .content .author,
 .carousel.prev .list .item:nth-child(2) .content .title,
@@ -339,5 +399,82 @@ header a:hover::before {
     }
     .carousel .list .item .content .title{
         font-size: 30px;
+    }
+}
+
+#loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2), -5px -5px 15px rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+#loader img {
+    width: 100px;
+    height: 100px;
+    animation: zoom 2s linear infinite;
+}
+@keyframes zoom {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+#cursor {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    position: fixed;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 10000;
+}
+
+#cursor::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#cursor.highlight {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: #ff0000;
+}
+
+@media (max-width: 768px) {
+    .carousel .list .item .title,
+    .carousel .list .item .topic {
+        font-size: 1.5em;
+    }
+
+    .carousel .list .item .buttons {
+        grid-template-columns: repeat(1, 100px);
+    }
+
+    .carousel .list .item .thumbnail {
+        width: 100px;
+        height: 100px;
+    }
+    .carousel .list .item .buttons button {
+        font-size: 0.8em;
+        padding: 10px 20px;
     }
 }
