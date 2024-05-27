@@ -465,6 +465,10 @@ button {
         font-size: 1.5em;
     }
 
+    .carousel .tracker {
+        display: none;
+    }
+
     .carousel .list .item .buttons {
         grid-template-columns: repeat(1, 100px);
     }
@@ -475,6 +479,6 @@ button {
     }
     .carousel .list .item .buttons button {
         font-size: 0.8em;
-        padding: 10px 20px;
+        padding: 10px ;
     }
 }
